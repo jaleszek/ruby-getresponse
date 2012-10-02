@@ -4,8 +4,8 @@ module GetResponse
 
   # Simple class that simulates connection to service
   class Connection
-    API_URI = "http://api2.getresponse.com"
-
+    #API_URI = "http://api2.getresponse.com"
+    API_URI = "http://api.getresponse360.pl/gr360pl"
     attr_reader :api_key
 
     def initialize(api_key)
