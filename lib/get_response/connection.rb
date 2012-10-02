@@ -17,8 +17,7 @@ module GetResponse
     #
     # returns:: Boolean
     def ping
-      result = self.send_request("ping")
-      return result["errors"].nil?
+      self.send_request("ping")
     end
 
 
