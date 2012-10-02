@@ -87,7 +87,13 @@ module GetResponse
         conn.post("/", request_params)
       end
       raise GetResponseError.new("API key verification failed") if resp.code.to_i == 403
-      response = JSON.parse(resp.body)
+      
+      begin
+        response = JSON.parse(resp.body)
+      rescue JSON::ParserError
+        response = resp.body
+      end
+
       if response["error"]
         raise GetResponse::GetResponseError.new(response["error"])
       end
