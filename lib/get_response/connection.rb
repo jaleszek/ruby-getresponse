@@ -77,15 +77,15 @@ module GetResponse
     #
     # params::  Hash
     def send_request(method, params = {})
-      request_params = {
-        :method => method,
-        :params => [@api_key, params]
-      }.to_json
-
       uri = URI.parse(API_URI)
-      resp = Net::HTTP.start(uri.host, uri.port) do |conn|
-        conn.post("/", request_params)
-      end
+      client = Net::HTTP.start(uri.host, uri.port)
+      resp = client.post(
+        uri.path, {
+          'method' => method,
+          'params' => [@api_key, params]
+        }.to_json
+      )
+
       raise GetResponseError.new("API key verification failed") if resp.code.to_i == 403
       
       response = JSON.parse(resp.body)
