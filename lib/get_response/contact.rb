@@ -147,7 +147,11 @@ module GetResponse
       end
       @name = value
     end
-
+       
+    def self.find(id)
+      params = {"contact" => id}
+      @connection.send_request("get_contact", {"contact" => id})["result"]
+    end
 
     protected
 
