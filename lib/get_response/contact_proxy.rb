@@ -74,6 +74,14 @@ module GetResponse
       response = @connection.send_request("get_contacts_deleted", conditions)
       build_contacts(response["result"])
     end
+    
+    # find contacts with getresponse id
+    
+    def find(id)
+      conditions = parse_conditions({"contact" => id})
+      response = @connection.send_request("get_contact", conditions)
+      build_contacts(response["result"])
+    end
 
     private
 
