@@ -150,7 +150,7 @@ module GetResponse
        
     def find(id)
       params = {"contact" => id}
-      @connection.send_request("get_contact", {"contact" => id})["result"]
+      @connection.send_request("get_contact", params)
     end
 
     protected
